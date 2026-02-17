@@ -9,7 +9,6 @@ import me.kislyuk.aqa.api.InternalApiClient;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach; // Добавлен импорт
 import org.junit.jupiter.api.BeforeAll;
-
 import static com.github.tomakehurst.wiremock.client.WireMock.configureFor;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 
