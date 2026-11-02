@@ -6,4 +6,4 @@
 java -jar -Dsecret=qazWSXedc -Dmock=http://localhost:8888/ src/main/java/app/internal-0.0.1-SNAPSHOT.jar
 ```
 3. Не закрывая терминал (открыть еще 1 терминал и в нем) выполнить команду: mvn clean test
-4. Посмотреть результат в консоли.
+4. Посмотреть результат в консоли. (Результат моего прогона находится в файле RESULT.md)
