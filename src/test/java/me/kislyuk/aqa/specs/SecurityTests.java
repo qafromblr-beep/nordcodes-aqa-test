@@ -15,14 +15,12 @@ public class SecurityTests extends BaseTest {
         currentToken = generateValidToken();
         Response response = client.sendWithCustomKey(currentToken, "LOGIN", "wrong-key");
 
-        // В зависимости от реализации приложения может быть 401 или JSON Error
         response.then().body("result", equalTo("ERROR"));
     }
 
     @Test
     @DisplayName("Ошибка при невалидном формате токена")
     void testInvalidTokenFormat() {
-        // Токен короче 32 символов
         String invalidToken = "12345ABC";
         Response response = client.sendRequest(invalidToken, "LOGIN");
 

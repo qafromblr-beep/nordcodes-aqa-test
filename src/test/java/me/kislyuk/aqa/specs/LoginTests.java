@@ -18,16 +18,12 @@ public class LoginTests extends BaseTest {
     @DisplayName("Успешная авторизация пользователя (LOGIN)")
     @Description("Проверка, что при валидном токене и успешном ответе внешнего сервиса приложение возвращает OK")
     void testSuccessfulLogin() {
-        // Данные для теста (в будущем заменим на генератор)
         currentToken = generateValidToken();
 
-        // 1. Настраиваем мок внешнего сервиса (имитируем успех /auth)
         mocks.setupAuthResponse(currentToken, 200);
 
-        // 2. Выполняем запрос через наш клиент
         ApiResponse response = client.login(currentToken);
 
-        // 3. Проверяем результат
         assertEquals("OK", response.getResult(), "Ожидался статус OK в поле result");
     }
 
@@ -36,7 +32,6 @@ public class LoginTests extends BaseTest {
     void testFailedLoginExternalServiceError() {
         currentToken = generateValidToken();
 
-        // Настраиваем мок на ошибку (500)
         mocks.setupAuthResponse(currentToken, 500);
 
         ApiResponse response = client.login(currentToken);

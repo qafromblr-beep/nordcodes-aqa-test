@@ -7,7 +7,7 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import me.kislyuk.aqa.api.InternalApiClient;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach; // Добавлен импорт
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import static com.github.tomakehurst.wiremock.client.WireMock.configureFor;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
@@ -17,7 +17,6 @@ public class BaseTest {
     protected static WireMockServer wireMockServer = new WireMockServer(wireMockConfig().port(8888));
     protected static InternalApiClient client;
 
-    // Поле для хранения токена текущего теста
     protected String currentToken;
 
     @BeforeAll
@@ -36,11 +35,9 @@ public class BaseTest {
         );
     }
 
-    // Метод очистки: выполняется после каждого теста
     @AfterEach
     void clearSession() {
         if (currentToken != null) {
-            // Отправляем запрос на LOGOUT, чтобы удалить токен из приложения
             client.logout(currentToken);
             currentToken = null;
         }

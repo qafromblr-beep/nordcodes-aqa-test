@@ -16,11 +16,9 @@ public class ActionTests extends BaseTest {
     void testActionAfterLogin() {
         currentToken = generateValidToken();
 
-        // Авторизуемся
         mocks.setupAuthResponse(currentToken, 200);
         client.login(currentToken);
 
-        // Выполняем действие
         mocks.setupActionResponse(currentToken, 200);
         ApiResponse response = client.action(currentToken);
         assertEquals("OK", response.getResult());

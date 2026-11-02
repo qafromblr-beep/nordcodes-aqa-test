@@ -13,11 +13,10 @@ public class InternalApiClient {
     private final String apiKey = "qazWSXedc";
     private final RequestSpecification spec;
 
-    // Конструктор позволяет передавать URL (например, из BaseTest)
     public InternalApiClient(String baseUri) {
         this.spec = new RequestSpecBuilder()
                 .setBaseUri(baseUri)
-                .setContentType(ContentType.URLENC) // Устанавливаем x-www-form-urlencoded
+                .setContentType(ContentType.URLENC)
                 .addHeader("X-Api-Key", apiKey)
                 .addHeader("Accept", "application/json")
                 .build();
@@ -38,10 +37,7 @@ public class InternalApiClient {
         return sendRequest(token, "LOGOUT").as(ApiResponse.class);
     }
 
-    /**
-     * Базовый метод для выполнения запроса.
-     * Возвращает Response, чтобы мы могли проверить статус-код перед десериализацией.
-     */
+
     @Step("Отправка POST запроса на /endpoint")
     public Response sendRequest(String token, String action) {
         return given()
@@ -52,9 +48,7 @@ public class InternalApiClient {
                 .post("/endpoint");
     }
 
-    /**
-     * Метод для негативных тестов (например, с неверным API ключом)
-     */
+
     @Step("Запрос с кастомным API-ключом: {customKey}")
     public Response sendWithCustomKey(String token, String action, String customKey) {
         return given()

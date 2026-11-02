@@ -16,15 +16,12 @@ public class LogoutTests extends BaseTest {
     void testLogoutRemovesToken() {
         currentToken = generateValidToken();
 
-        // 1. Входим
         mocks.setupAuthResponse(currentToken, 200);
         client.login(currentToken);
 
-        // 2. Выходим
         ApiResponse logoutResponse = client.logout(currentToken);
         assertEquals("OK", logoutResponse.getResult());
 
-        // 3. Проверяем, что действие больше недоступно
         ApiResponse actionResponse = client.action(currentToken);
         assertEquals("ERROR", actionResponse.getResult());
     }
